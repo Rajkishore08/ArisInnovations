@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Aris logo symbol -->
+  <g>
+    <!-- Left rounded organic shape -->
+    <path d="M2 52 C2 52 2 32 2 32 C2 22 12 12 22 12 C32 12 42 12 42 12 C47 12 52 17 52 22 C52 27 47 32 42 32 C32 32 22 32 22 32 C12 32 2 42 2 52 Z" fill="#EF4444"/>
+    
+    <!-- Right angular diamond shape -->
+    <path d="M42 12 L72 12 C77 12 82 17 82 22 L82 42 C82 47 77 52 72 52 L62 52 L42 32 L42 12 Z" fill="#EF4444"/>
+    
+    <!-- Small accent dot -->
+    <rect x="87" y="12" width="4" height="4" fill="#EF4444"/>
+  </g>
+  
+  <!-- Aris text -->
+  <g transform="translate(100, 15)">
+    <text x="0" y="30" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#1F2937">Aris</text>
+    <!-- Red dot after Aris -->
+    <circle cx="75" cy="35" r="3" fill="#EF4444"/>
+  </g>
+</svg>

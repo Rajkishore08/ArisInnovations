@@ -1,0 +1,74 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer glow effect -->
+  <circle cx="100" cy="100" r="95" fill="url(#outerGlow)" opacity="0.3"/>
+  
+  <!-- Main background circle -->
+  <circle cx="100" cy="100" r="85" fill="url(#mainGradient)" stroke="url(#strokeGradient)" stroke-width="3"/>
+  
+  <!-- Inner circle for depth -->
+  <circle cx="100" cy="100" r="75" fill="none" stroke="url(#innerStroke)" stroke-width="1" opacity="0.5"/>
+  
+  <!-- Letter A with premium styling -->
+  <path d="M65 150 L100 70 L135 150 M80 120 L120 120" 
+        stroke="white" 
+        stroke-width="8" 
+        stroke-linecap="round" 
+        stroke-linejoin="round" 
+        fill="none"
+        filter="url(#shadow)"/>
+  
+  <!-- Accent elements -->
+  <circle cx="100" cy="55" r="4" fill="white" opacity="0.9"/>
+  <circle cx="100" cy="55" r="2" fill="url(#accentGradient)"/>
+  
+  <!-- Small decorative elements -->
+  <circle cx="62" cy="155" r="3" fill="white" opacity="0.6"/>
+  <circle cx="138" cy="155" r="3" fill="white" opacity="0.6"/>
+  
+  <!-- Innovation dots pattern -->
+  <circle cx="75" cy="85" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="125" cy="85" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="85" cy="135" r="1.5" fill="white" opacity="0.4"/>
+  <circle cx="115" cy="135" r="1.5" fill="white" opacity="0.4"/>
+  
+  <!-- Gradient and Filter Definitions -->
+  <defs>
+    <!-- Main gradient -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="35%" style="stop-color:#dc2626;stop-opacity:1" />
+      <stop offset="65%" style="stop-color:#9333ea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Stroke gradient -->
+    <linearGradient id="strokeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f87171;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#a855f7;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- Inner stroke -->
+    <linearGradient id="innerStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.1" />
+    </linearGradient>
+    
+    <!-- Outer glow -->
+    <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#9333ea;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Accent gradient -->
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f59e0b;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Drop shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="black" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+</svg>

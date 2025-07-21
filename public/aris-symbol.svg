@@ -1,0 +1,10 @@
+<svg width="100" height="100" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main geometric logo shape -->
+  <g transform="translate(20, 10)">
+    <!-- Left curved shape -->
+    <path d="M0 80 C0 35.8 35.8 0 80 0 C124.2 0 160 35.8 160 80 L80 80 C35.8 80 0 80 0 80 Z" fill="#EF4444"/>
+    
+    <!-- Right angular shape -->
+    <path d="M80 0 L160 0 L160 80 L80 80 L80 0 Z" fill="#EF4444" transform="rotate(45 120 40)"/>
+  </g>
+</svg>
