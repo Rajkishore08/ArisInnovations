@@ -69,86 +69,18 @@ export default function HomePage() {
     setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
   }
 
+  // Only render floating neon particles on client to avoid hydration mismatch
+  const [showParticles, setShowParticles] = useState(false);
+  useEffect(() => {
+    setShowParticles(true);
+  }, []);
+
   return (
     <div className="min-h-screen bg-black overflow-hidden relative">
-      {/* Neon Animated Background */}
-      <div className="fixed inset-0 opacity-60">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(0,255,255,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(255,0,255,0.15),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_75%,rgba(0,255,0,0.15),transparent_50%)]" />
+      {/* Simple static background for performance */}
+      <div className="fixed inset-0 bg-black opacity-40 pointer-events-none" />
 
-        <motion.div
-          className="absolute w-96 h-96 md:w-[50rem] md:h-[50rem] bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-3xl"
-          style={{ x, y }}
-          animate={{
-            scale: [1, 1.5, 1],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 30,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "linear",
-          }}
-        />
-
-        <motion.div
-          className="absolute top-1/4 right-1/4 w-80 h-80 md:w-96 md:h-96 bg-gradient-to-r from-green-400/25 to-blue-400/25 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -80, 0],
-            scale: [1, 1.6, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-1/4 left-1/4 w-72 h-72 md:w-[30rem] md:h-[30rem] bg-gradient-to-r from-purple-400/25 to-cyan-400/25 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, 80, 0],
-            scale: [1, 0.7, 1],
-          }}
-          transition={{
-            duration: 35,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-
-      {/* Neon Grid Pattern */}
-      <div className="fixed inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.1)_1px,transparent_1px)] bg-[size:80px_80px] md:bg-[size:150px_150px]" />
-      </div>
-
-      {/* Floating Neon Particles */}
-      <div className="fixed inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 4,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: Math.random() * 5,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-      </div>
+      {/* Removed floating neon particles for performance */}
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 pt-32 md:pt-40">
@@ -160,348 +92,103 @@ export default function HomePage() {
             className="text-center max-w-7xl mx-auto relative z-[100]"
           >
             {/* Neon Hero Heading */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 1.2, type: "spring" }}
-              className="mb-12 md:mb-20 relative z-[100] text-left"
-            >
-              <motion.h1
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-6 md:mb-12 leading-[0.9] tracking-[-0.02em] px-4 font-poppins relative z-[100]"
+            <div className="mb-12 md:mb-20 relative z-[100] text-left">
+              <h1
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-6 md:mb-12 leading-[0.9] tracking-[-0.02em] px-4 font-poppins relative z-[100]"
                 style={{
-                  textShadow: "0 0 30px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6), 0 0 90px rgba(0,255,255,0.4)",
-                  filter: "none",
-                  backdropFilter: "none",
-                }}
-                animate={{
-                  textShadow: [
-                    "0 0 30px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6), 0 0 90px rgba(0,255,255,0.4)",
-                    "0 0 40px rgba(255,0,255,0.8), 0 0 80px rgba(0,255,255,0.6), 0 0 120px rgba(255,0,255,0.4)",
-                    "0 0 30px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6), 0 0 90px rgba(0,255,255,0.4)",
-                  ],
-                }}
-                transition={{
-                  duration: 15,
-                  repeat: Number.POSITIVE_INFINITY,
-                  ease: "linear",
+                  background: "linear-gradient(90deg, #00FFFF 0%, #8B5CF6 50%, #EC4899 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  color: "#8B5CF6",
+                  fontWeight: 900,
                 }}
               >
-                <motion.span
-                  initial={{ opacity: 0, y: 100, rotateX: 90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{ delay: 0.8, duration: 1.2, type: "spring", bounce: 0.4 }}
+                <span
                   className="block relative z-[100] mb-4 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl"
                   style={{
-                    color: "#FFFFFF",
-                    textShadow: "none",
-                    filter: "none",
-                    backdropFilter: "none",
-                    fontWeight: "400",
+                    background: "linear-gradient(90deg, #00FFFF 0%, #8B5CF6 50%, #EC4899 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    fontWeight: 400,
                     letterSpacing: "0.02em",
                   }}
                 >
                   we craft the
-                </motion.span>
-                <motion.span
-                  initial={{ opacity: 0, y: 100, rotateX: 90, scale: 0.8 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0, 
-                    rotateX: 0, 
-                    scale: 1,
-                    color: [
-                      "#00FFFF",
-                      "#FF00FF", 
-                      "#00FFFF"
-                    ],
-                    textShadow: [
-                      "0 0 20px rgba(0,255,255,1), 0 0 40px rgba(255,0,255,0.8), 0 0 60px rgba(0,255,255,0.6)",
-                      "0 0 20px rgba(255,0,255,1), 0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(255,0,255,0.6)",
-                      "0 0 20px rgba(0,255,255,1), 0 0 40px rgba(255,0,255,0.8), 0 0 60px rgba(0,255,255,0.6)"
-                    ]
-                  }}
-                  transition={{ 
-                    delay: 1.4, 
-                    duration: 1.2, 
-                    type: "spring", 
-                    bounce: 0.4,
-                    color: {
-                      duration: 3,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    },
-                    textShadow: {
-                      duration: 3,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }
-                  }}
-                  whileHover={{ scale: 1.05, rotateX: 5 }}
-                  className="block relative z-[100] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+                </span>
+                <span
+                  className="block relative z-[100] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-anton"
                   style={{
-                    color: "#00FFFF",
-                    textShadow: "0 0 20px rgba(0,255,255,1), 0 0 40px rgba(255,0,255,0.8), 0 0 60px rgba(0,255,255,0.6)",
-                    filter: "drop-shadow(0 0 15px rgba(0,255,255,0.6))",
-                    backdropFilter: "none",
-                    fontFamily: "var(--font-anton), Anton, Impact, 'Arial Black', sans-serif",
-                    fontWeight: "400",
+                    background: "linear-gradient(90deg, #00FFFF 0%, #8B5CF6 50%, #EC4899 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    fontWeight: 700,
                     letterSpacing: "0.05em",
                   }}
                 >
                   EXTRAORDINARY
-                </motion.span>
-              </motion.h1>
-            </motion.div>
+                  <span className="block h-1 w-24 mt-2 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400" />
+                </span>
+              </h1>
+            </div>
 
             {/* Neon Subtitle */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8, duration: 1.4 }}
-              className="relative mb-16 md:mb-24 px-6 max-w-7xl mx-auto z-[100] text-left"
-            >
-              <div className="absolute -top-8 -left-8 md:-top-16 md:-left-16 text-cyan-400/20 text-6xl md:text-[12rem] font-black font-poppins leading-none z-[90]">
+            <div className="relative mb-16 md:mb-24 px-6 max-w-7xl mx-auto z-[100] text-left">
+              <div className="absolute -top-8 -left-8 md:-top-16 md:-left-16 text-cyan-400/20 text-6xl md:text-[12rem] font-black font-poppins leading-none z-[90] select-none">
                 &quot;
               </div>
-              <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white max-w-6xl leading-relaxed font-light font-poppins relative z-[100]"
-                style={{
-                  filter: "none",
-                  backdropFilter: "none",
-                  textShadow: "0 0 5px rgba(255,255,255,0.2)",
-                  opacity: "0.9",
-                }}
-              >
+              <div className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-white max-w-6xl leading-relaxed font-light font-poppins relative z-[100]">
                 <span className="text-gray-200">We don&apos;t just create </span>
-                <motion.span
-                  className="text-cyan-400 font-semibold relative inline-block"
-                  whileHover={{ scale: 1.05 }}
-                  animate={{
-                    textShadow: [
-                      "0 0 20px rgba(0,255,255,0.6)",
-                      "0 0 30px rgba(255,0,255,0.6)",
-                      "0 0 20px rgba(0,255,255,0.6)",
-                    ],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                  }}
-                  style={{
-                    filter: "none",
-                    backdropFilter: "none",
-                  }}
-                >
+                <span className="font-semibold relative inline-block" style={{
+                  background: "linear-gradient(90deg, #00FFFF 0%, #8B5CF6 50%, #EC4899 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}>
                   designs
-                  <motion.div
-                    className="absolute -bottom-2 md:-bottom-3 left-0 right-0 h-1 md:h-1.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ delay: 2.5, duration: 1.2 }}
-                    style={{
-                      boxShadow: "0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(0,255,255,0.4)",
-                    }}
-                  />
-                </motion.span>
+                  <span className="block h-1 w-16 mt-1 rounded-full bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400" />
+                </span>
                 <span className="text-gray-200"> — we craft experiences that inspire and solutions that transform.</span>
               </div>
-              <div className="absolute -bottom-8 -right-8 md:-bottom-16 md:-right-16 text-pink-400/20 text-6xl md:text-[12rem] font-black rotate-180 font-poppins leading-none z-[90]">
+              <div className="absolute -bottom-8 -right-8 md:-bottom-16 md:-right-16 text-pink-400/20 text-6xl md:text-[12rem] font-black rotate-180 font-poppins leading-none z-[90] select-none">
                 &quot;
               </div>
-              
-              {/* Floating neon particles */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute w-2 h-2 rounded-full ${
-                    i % 3 === 0 ? "bg-cyan-400" : i % 3 === 1 ? "bg-purple-400" : "bg-pink-400"
-                  }`}
-                  style={{
-                    left: `${20 + i * 15}%`,
-                    top: `${30 + (i % 2) * 40}%`,
-                    boxShadow: `0 0 10px currentColor`,
-                  }}
-                  animate={{
-                    y: [-30, 30, -30],
-                    opacity: [0.3, 1, 0.3],
-                    scale: [0.8, 1.2, 0.8],
-                  }}
-                  transition={{
-                    duration: 4 + i,
-                    repeat: Number.POSITIVE_INFINITY,
-                    ease: "easeInOut",
-                    delay: i * 0.5,
-                  }}
-                />
-              ))}
-            </motion.div>
+            </div>
 
-            {/* Neon CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.2, duration: 1.2 }}
-              className="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center mb-20 md:mb-28 px-6 relative z-[100]"
-              style={{
-                filter: "none",
-                backdropFilter: "none",
-              }}
-            >
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -8 }} 
-                whileTap={{ scale: 0.95 }} 
-                className="relative group"
+            {/* Simple CTA Buttons for performance */}
+            <div className="flex flex-col sm:flex-row gap-6 md:gap-10 justify-center mb-20 md:mb-28 px-6 relative z-[100]">
+              <Button
+                asChild
+                size="lg"
+                className="relative bg-cyan-600 hover:bg-cyan-700 text-white px-10 md:px-14 py-5 md:py-7 text-lg md:text-xl rounded-full font-bold tracking-wide border-0 w-full sm:w-auto font-poppins transition-all duration-300"
+                style={{ boxShadow: "none" }}
               >
-                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500 group-hover:duration-200">
-                  <motion.div
-                    className="w-full h-full rounded-full"
-                    animate={{
-                      boxShadow: [
-                        "0 0 20px rgba(0,255,255,0.5), 0 0 40px rgba(0,255,255,0.3)",
-                        "0 0 30px rgba(255,0,255,0.5), 0 0 60px rgba(255,0,255,0.3)",
-                        "0 0 20px rgba(0,255,255,0.5), 0 0 40px rgba(0,255,255,0.3)",
-                      ],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </div>
-                <Button
-                  asChild
-                  size="lg"
-                  className="relative bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 text-white px-10 md:px-14 py-5 md:py-7 text-lg md:text-xl rounded-full font-bold tracking-wide border-0 w-full sm:w-auto font-poppins transition-all duration-500"
-                  style={{
-                    boxShadow: "0 20px 60px rgba(0,255,255,0.3), 0 0 40px rgba(0,255,255,0.2), inset 0 0 20px rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <Link href="/contact" className="inline-flex items-center gap-4">
-                    Start Your Journey
-                    <motion.div
-                      animate={{ 
-                        x: [0, 8, 0],
-                        filter: [
-                          "drop-shadow(0 0 5px rgba(255,255,255,0.8))",
-                          "drop-shadow(0 0 10px rgba(0,255,255,0.8))",
-                          "drop-shadow(0 0 5px rgba(255,255,255,0.8))",
-                        ],
-                      }}
-                      transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY }}
-                    >
-                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-                    </motion.div>
-                  </Link>
-                </Button>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.05, y: -8 }} 
-                whileTap={{ scale: 0.95 }} 
-                className="relative group"
+                <Link href="/contact" className="inline-flex items-center gap-4">
+                  Start Your Journey
+                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="relative border-2 border-gray-400/50 text-white hover:bg-gray-900/30 bg-black/40 px-10 md:px-14 py-5 md:py-7 text-lg md:text-xl rounded-full font-bold tracking-wide hover:border-cyan-400/50 w-full sm:w-auto font-poppins transition-all duration-300"
+                style={{ boxShadow: "none" }}
               >
-                <div className="absolute -inset-1 bg-gradient-to-r from-gray-400 via-gray-300 to-white rounded-full blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="lg"
-                  className="relative border-2 border-gray-400/50 text-white hover:bg-gray-900/30 bg-black/40 px-10 md:px-14 py-5 md:py-7 text-lg md:text-xl rounded-full backdrop-blur-xl font-bold tracking-wide hover:border-cyan-400/50 w-full sm:w-auto font-poppins transition-all duration-500"
-                  style={{
-                    boxShadow: "0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255,255,255,0.05)",
-                  }}
-                >
-                  <Link href="#testimonials" className="inline-flex items-center gap-3">
-                    View Our Work
-                    <motion.div
-                      animate={{ 
-                        opacity: [0.5, 1, 0.5],
-                        filter: [
-                          "drop-shadow(0 0 2px rgba(255,255,255,0.5))",
-                          "drop-shadow(0 0 8px rgba(0,255,255,0.7))",
-                          "drop-shadow(0 0 2px rgba(255,255,255,0.5))",
-                        ],
-                      }}
-                      transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                    >
-                      <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-                    </motion.div>
-                  </Link>
-                </Button>
-              </motion.div>
-            </motion.div>
+                <Link href="#testimonials" className="inline-flex items-center gap-3">
+                  View Our Work
+                  <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
+                </Link>
+              </Button>
+            </div>
 
             {/* Mobile-Optimized Stats */}
           </motion.div>
         </motion.div>
 
-        {/* Neon Floating Elements */}
-        <motion.div
-          className="absolute top-20 left-4 md:left-20 w-3 h-3 md:w-6 md:h-6 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full"
-          style={{
-            boxShadow: "0 0 20px rgba(0,255,255,0.8), 0 0 40px rgba(0,255,255,0.4)",
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.5, 1, 0.5],
-            scale: [1, 1.3, 1],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-8 md:right-32 w-4 h-4 md:w-8 md:h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
-          style={{
-            boxShadow: "0 0 20px rgba(255,0,255,0.8), 0 0 40px rgba(255,0,255,0.4)",
-          }}
-          animate={{
-            y: [0, 40, 0],
-            x: [0, -15, 0],
-            opacity: [0.3, 0.9, 0.3],
-            scale: [1, 1.5, 1],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-40 left-8 md:left-32 w-3 h-3 md:w-5 md:h-5 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full"
-          style={{
-            boxShadow: "0 0 15px rgba(0,255,0,0.8), 0 0 30px rgba(0,255,0,0.4)",
-          }}
-          animate={{
-            y: [0, -35, 0],
-            opacity: [0.4, 1, 0.4],
-            scale: [1, 1.4, 1],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-60 left-1/2 w-2 h-2 md:w-4 md:h-4 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full"
-          style={{
-            boxShadow: "0 0 15px rgba(255,20,147,0.8), 0 0 30px rgba(255,20,147,0.4)",
-          }}
-          animate={{
-            x: [-20, 20, -20],
-            y: [0, -20, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
+        {/* Removed floating neon elements for performance */}
       </section>
 
       {/* Mobile-Optimized Services Section */}
